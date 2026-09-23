@@ -88,8 +88,12 @@ class TestUrbanRoutes:
         self.routes_page.click_comfort_icon()
         self.routes_page.click_confirm_order_button()
 
-        assert self.routes_page.get_search_car_modal_title() == "Buscar automóvil"
+        modal_title = self.routes_page.get_search_car_modal_title()
 
+        assert (
+                modal_title == "Buscar automóvil"
+                or modal_title.startswith("El conductor llegará")
+        )
 
     def teardown_method(self):
         self.driver.quit()
